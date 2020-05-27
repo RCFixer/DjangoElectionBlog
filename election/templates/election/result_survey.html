@@ -1,0 +1,46 @@
+{% extends 'election/base_election.html' %}
+
+{% load static %}
+
+{% block title %}
+    Результаты голосования {{ survey.title }}
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'style/TableBarChart.css' %}" />
+<link rel="stylesheet" href="{% static 'style/SurveyDetail.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="row col-10 mb-5 mx-auto">
+<table id="source">
+    <caption>{{ survey.title }}</caption>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Результаты</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for option in survey.options.all %}
+        <tr>
+            <th>{{ option.title }}</th>
+            <td>{{ option.count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div id="target" class="col-6">
+</div>
+</div>
+<script type="text/javascript" src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/TableBarChart.js' %}"></script>
+
+<script type="text/javascript">
+$(function() {
+    $('#source').tableBarChart('#target', '', true);
+});
+</script>
+
+
+{% endblock %}

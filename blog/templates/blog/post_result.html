@@ -1,0 +1,51 @@
+{% extends "blog/base_blog.html" %}
+
+{% load static %}
+
+{% block title %}
+    Результаты голосования {{ post.title }}
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'style/TableBarChart.css' %}" />
+<link rel="stylesheet" href="{% static 'style/PostDetail.css' %}" />
+{% endblock %}
+
+{% block content %}
+{% for survey in post.surveys.all %}
+<div class="row col-10 mb-5 mx-auto">
+<table id="source{{ forloop.counter }}">
+    <caption>{{ survey.title }}</caption>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Результаты</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for option in survey.options.all %}
+        <tr>
+            <th>{{ option.title }}</th>
+            <td>{{ option.count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div id="target{{ forloop.counter }}" class="col-8" style="width: 800px; height:400px">
+</div>
+</div>
+{% endfor %}
+
+<script type="text/javascript" src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/TableBarChart.js' %}"></script>
+
+{% for survey in post.surveys.all %}
+<script type="text/javascript">
+$(function() {
+    $('#source{{ forloop.counter }}').tableBarChart('#target{{ forloop.counter }}', '', false);
+});
+</script>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,136 @@
+.caption {
+	display: block;
+	text-align: center;
+	font-weight: bold;
+	height: 40px;
+}
+
+.graph {
+	position: relative;
+	float: right;
+}
+
+.graph ul {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+
+.legend {
+   background: #f0f0f0;
+   border-radius: 4px;
+   bottom: 0;
+   position: relative;
+   text-align: left;
+   width: 100%;
+}
+
+.legend li {
+   display: block;
+   float: left;
+   height: 20px;
+   margin: 0;
+   padding: 10px 20px;
+}
+
+.legend span.icon {
+   background-position: 50% 0;
+   border-radius: 2px;
+   display: block;
+   float: left;
+   height: 16px;
+   margin: 2px 10px 0 0;
+   width: 16px;
+}
+
+.x-axis {
+   bottom: 0;
+   color: #555;
+   position: absolute;
+   text-align: center;
+}
+
+.x-axis li {
+   float: left;
+   margin: 0 10px;
+}
+
+.y-axis {
+   color: #555;
+   position: absolute;
+   text-align: left;
+}
+
+.y-axis ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+.y-axis li {
+   border-top: 1px solid #ccc;
+   display: block;
+}
+
+.y-axis li span {
+   display: block;
+   position: relative;
+   text-align: right;
+}
+
+.bars {
+	position: absolute;
+	width: 100%;
+	z-index: 10;
+}
+.bar-group {
+	float: left;
+	height: 100%;
+	position: relative;
+	margin: 0 10px;
+}
+.bar {
+	border-radius: 3px 3px 0 0;
+	bottom: 0;
+	position: absolute;
+	text-align: center;
+	#cursor: pointer;
+	display: block;
+}
+
+.bar span {
+	margin-top: -25px;
+	*zoom: 1;
+	display: none;
+	position: relative;
+}
+
+.item-0 {
+	background: #d0e4f7; /* Old browsers */
+}
+
+.item-1 {
+	background: #f0b7a1; /* Old browsers */
+}
+
+.item-2 {
+	background: #6d6d6d; /* Old browsers */
+}
+
+.item-3 {
+	background: #bfd255; /* Old browsers */
+}
+
+.item-4 {background: #87CEEB;}
+.item-5 {background: #FFA500;}
+.item-6 {background: #FF0000;}
+.item-7 {background: #FFD700;}
+.item-8 {background: #FFD700;}
+.item-9 {background: #CCFFFF;}
+.item-10 {background: #FFFF00;}
+.item-11 {background: #4682B4;}
+.item-12 {background: #99FF00;}
+.item-13 {background: #B22222;}
+.item-14 {background: #003366;}
+.item-15 {background: #FFCCCC;}
+.item-16 {background: #33CC99;}
+.item-17 {background: #008000;}

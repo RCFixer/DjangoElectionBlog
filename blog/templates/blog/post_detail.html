@@ -1,0 +1,52 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+    {{ post.title }} - {{ block.super }}
+{% endblock %}
+
+{% block menu %}
+    <li class="nav-item ml-2">
+        <a class="btn btn-primary" href="{{ post.get_update_url }}">Обновить пост</a>
+    </li>
+    <li class="nav-item ml-2">
+        <a class="btn btn-danger" href="{{ post.get_delete_url }}">Удалить пост</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+<div class="offset-2 col-6">
+    <h1 class="mt-5">
+        {{ post.title }}
+    </h1>
+    <p>
+        {{ post.body }}
+    </p>
+<form class="form-horizontal" method="POST" action="{{ post.get_absolute_url }}">
+    {% csrf_token %}
+    <div class="col-12">
+    {% for survey in post.surveys.all %}
+    <div class="card mb-2">
+        <div class="card-body">
+        <h5 class="card-title">{{ survey.title }}</h5>
+        {% for option in survey.options.all %}
+            <input type="radio" id="{{ survey.id }}{{ option.id }}{{ forloop.counter }}" name="{{ survey.title }}" value="{{ option.id }}" required>
+            <label for="{{ survey.id }}{{ option.id }}{{ forloop.counter }}">{{ option.title }}</label>
+        {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    {% if post.surveys.all %}
+    <div class="row spacer">
+        <div class="col-4 offset-2">
+            <button type="submit" name="vote" class="btn btn-block btn-primary">Проголосовать</button>
+        </div>
+        <div class="col-4">
+            <a href="{{ post.get_result_url }}" class="btn btn-block btn-warning">Результаты</a>
+        </div>
+    </div>
+    {% endif %}
+</form>
+    
+</div>
+{% endblock %}

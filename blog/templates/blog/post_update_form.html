@@ -1,0 +1,39 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+    Редактирование поста "{{ post.title }}"- {{ block.super }}
+{% endblock %}
+
+
+{% block menu %}
+    <li class="nav-item ml-2">
+        <a class="btn btn-danger" href="{{ post.get_delete_url }}">Удалить пост</a>
+    </li>
+{% endblock %}
+
+
+{% block content %}
+<div class="offset-2 col-6">
+    <form class="" action="{{ post.get_update_url }}" method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="form-group">
+                {% if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+                {{ field.label }}
+                {{ field }}
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            {{ survey_form.label }}
+            {{ survey_form }}
+        </div>
+        <button type="submit" name="button" class="btn btn-primary">Update post</button>
+    </form>
+</div>
+
+{% endblock %}
